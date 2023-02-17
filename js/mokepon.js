@@ -1,5 +1,5 @@
 let ataqueJugador
-
+let ataqueEnemigo
 // Inicializacion de parametros de juego
 function iniciarJuego(){
    let botonMascotaJugador = document.getElementById('boton-mascota')
@@ -31,9 +31,9 @@ function seleccionarMascotaJugador(){
 
    seleccionarMascotaEnemigo()
 }
-function aleatorio(min,max){
-   return Math.floor(Math.random()*(max-min +1) + min)
-}
+
+
+
 
 // Acciones del enemigo
 function seleccionarMascotaEnemigo(){
@@ -51,15 +51,45 @@ function seleccionarMascotaEnemigo(){
 // Acciones de ataque
 function ataqueFuego(){
    ataqueJugador='Fuego'
-   alert(ataqueJugador)
+   ataqueAleatorioEnemigo()
 }
 function ataqueAgua(){
    ataqueJugador='Agua'
-   alert(ataqueJugador)
+   ataqueAleatorioEnemigo()
 }
 function ataqueTierra(){
    ataqueJugador='Tierra'
-   alert(ataqueJugador)
+   ataqueAleatorioEnemigo()
+}
+
+//Ataque aleatorio del enemigo 
+
+function ataqueAleatorioEnemigo(){
+   let ataqueAleatorio = aleatorio(1,3)
+   if (ataqueAleatorio==1){
+      ataqueEnemigo='FUEGO'
+   }else if(ataqueAleatorio==2){
+      ataqueEnemigo='AGUA'
+   }else{
+      ataqueEnemigo='TIERRA'
+   }
+
+   crearMensaje()
+}
+
+// Crear mensajes 
+
+function crearMensaje (){
+   let sectionMensajes = document.getElementById('mensajes')
+   let parrafo = document.createElement('p')
+   parrafo.innerHTML='Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo ataco con ' + ataqueEnemigo + ' - Ganaste 🥳'
+   sectionMensajes.appendChild(parrafo)
+}
+
+
+// Genera un numero aleatorio en un rango
+function aleatorio(min,max){
+   return Math.floor(Math.random()*(max-min +1) + min)
 }
 //Iniciar Juego
 window.addEventListener('load', iniciarJuego)
