@@ -1,8 +1,6 @@
 let ataqueJugador
 
-
-
-
+// Inicializacion de parametros de juego
 function iniciarJuego(){
    let botonMascotaJugador = document.getElementById('boton-mascota')
    botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
@@ -15,6 +13,7 @@ function iniciarJuego(){
    botonTierra.addEventListener('click',ataqueTierra)
 }
 
+// Acciones del juegador
 function seleccionarMascotaJugador(){
    let inputhipodoge = document.getElementById('hipodoge')
    let inputcapipepo = document.getElementById('capipepo')
@@ -35,6 +34,8 @@ function seleccionarMascotaJugador(){
 function aleatorio(min,max){
    return Math.floor(Math.random()*(max-min +1) + min)
 }
+
+// Acciones del enemigo
 function seleccionarMascotaEnemigo(){
    let ataqueAleatorio = aleatorio(1,3)
    let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
@@ -46,6 +47,8 @@ function seleccionarMascotaEnemigo(){
       spanMascotaEnemigo.innerHTML= 'Ratigueya'
    }
 }
+
+// Acciones de ataque
 function ataqueFuego(){
    ataqueJugador='Fuego'
    alert(ataqueJugador)
