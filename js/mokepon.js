@@ -1,5 +1,8 @@
 let ataqueJugador
 let ataqueEnemigo
+let vidasJugador = 3
+let vidasEnemigos = 3
+
 // Inicializacion de parametros de juego
 function iniciarJuego(){
    let botonMascotaJugador = document.getElementById('boton-mascota')
@@ -31,9 +34,6 @@ function seleccionarMascotaJugador(){
 
    seleccionarMascotaEnemigo()
 }
-
-
-
 
 // Acciones del enemigo
 function seleccionarMascotaEnemigo(){
@@ -83,24 +83,50 @@ function crearMensaje (){
    let sectionMensajes = document.getElementById('mensajes')
    let parrafo = document.createElement('p')
    let resultado 
+   let spanVidasJugador = document.getElementById('vida-jugador')
+   let spanVidasEnemigo = document.getElementById('vida-enemigo')
 
    if (ataqueJugador==ataqueEnemigo){
-      resultado= 'Empate'
+      resultado= '¡Empate!'
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='AGUA'){
-      resultado='GANA ENEMIGO'
+      resultado='¡GANA ENEMIGO!'
+      vidasJugador=vidasJugador-1
+      spanVidasJugador.innerHTML = vidasJugador
    }else if(ataqueJugador=='AGUA' && ataqueEnemigo=='FUEGO'){
-      resultado='GANA JUGADOR'
+      resultado='¡GANA JUGADOR!'
+      vidasEnemigos=vidasEnemigos-1
+      spanVidasEnemigo.innerHTML = vidasEnemigos
    }else if(ataqueJugador=='AGUA' && ataqueEnemigo=='TIERRA'){
-      resultado='GANA ENEMIGO'
+      resultado='¡GANA ENEMIGO!'
+      vidasJugador=vidasJugador-1
+      spanVidasJugador.innerHTML = vidasJugador
    }else if(ataqueJugador=='TIERRA' && ataqueEnemigo=='AGUA'){
-      resultado='GANA JUGADOR'
+      resultado='¡GANA JUGADOR!'
+      vidasEnemigos=vidasEnemigos-1
+      spanVidasEnemigo.innerHTML = vidasEnemigos
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='TIERRA'){
-      resultado='GANA ENEMIGO'
+      resultado='¡GANA ENEMIGO!'
+      vidasJugador=vidasJugador-1
+      spanVidasJugador.innerHTML = vidasJugador
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='TIERRA'){
-      resultado='GANA JUGADOR'
+      resultado='¡GANA JUGADOR!'
+      vidasEnemigos=vidasEnemigos-1
+      spanVidasEnemigo.innerHTML = vidasEnemigos
+   }else if(ataqueJugador=='TIERRA' && ataqueEnemigo=='FUEGO'){
+      resultado='¡GANA ENEMIGO!'
+      vidasJugador=vidasJugador-1
+      spanVidasJugador.innerHTML = vidasJugador
    }
-   parrafo.innerHTML='Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo ataco con ' + ataqueEnemigo + ' - Ganaste 🥳'
+
+
+   parrafo.innerHTML='Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo ataco con ' + ataqueEnemigo + ' ' + resultado + ' 🥳'
+   if (vidasJugador <= 0){
+      parrafo.innerHTML= 'El Jugador no tiene mas vidas'
+   } else if (vidasEnemigos <= 0){
+      parrafo.innerHTML= 'El Enemigo no tiene mas vidas'
+   }
    sectionMensajes.appendChild(parrafo)
+
 }
 
 
