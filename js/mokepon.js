@@ -103,6 +103,10 @@ function combate (){
 }
 
 function revisarVidas(){
+   if (vidasEnemigo<0 || vidasJugador<0) {
+       //reiniciar
+   }
+
    if(vidasEnemigo==0){
       crearMensajeFinal("FELICITACIONES! Ganaste :)")
    }else if(vidasJugador==0){
