@@ -74,61 +74,69 @@ function ataqueAleatorioEnemigo(){
       ataqueEnemigo='TIERRA'
    }
 
-   crearMensaje()
+   combate()
 }
 
-// Crear mensajes 
+// Combate
 
-function crearMensaje (){
-   let sectionMensajes = document.getElementById('mensajes')
-   let parrafo = document.createElement('p')
-   let resultado 
+function combate (){
    let spanVidasJugador = document.getElementById('vida-jugador')
-   let spanVidasEnemigo = document.getElementById('vida-enemigo')
+   let spanVidasEnemigo = document.getElementById('vida-enemigo') 
 
    if (ataqueJugador==ataqueEnemigo){
       resultado= '¡Empate!'
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='AGUA'){
-      resultado='¡GANA ENEMIGO!'
-      vidasJugador=vidasJugador-1
-      spanVidasJugador.innerHTML = vidasJugador
+      crearMensaje('¡GANA ENEMIGO!')
    }else if(ataqueJugador=='AGUA' && ataqueEnemigo=='FUEGO'){
-      resultado='¡GANA JUGADOR!'
-      vidasEnemigos=vidasEnemigos-1
-      spanVidasEnemigo.innerHTML = vidasEnemigos
+      crearMensaje('¡GANA JUGADOR!')
    }else if(ataqueJugador=='AGUA' && ataqueEnemigo=='TIERRA'){
-      resultado='¡GANA ENEMIGO!'
-      vidasJugador=vidasJugador-1
-      spanVidasJugador.innerHTML = vidasJugador
+      crearMensaje('¡GANA ENEMIGO!')
    }else if(ataqueJugador=='TIERRA' && ataqueEnemigo=='AGUA'){
-      resultado='¡GANA JUGADOR!'
-      vidasEnemigos=vidasEnemigos-1
-      spanVidasEnemigo.innerHTML = vidasEnemigos
+      crearMensaje(resultado='¡GANA JUGADOR!')
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='TIERRA'){
-      resultado='¡GANA ENEMIGO!'
-      vidasJugador=vidasJugador-1
-      spanVidasJugador.innerHTML = vidasJugador
+      crearMensaje('¡GANA ENEMIGO!')
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='TIERRA'){
-      resultado='¡GANA JUGADOR!'
-      vidasEnemigos=vidasEnemigos-1
-      spanVidasEnemigo.innerHTML = vidasEnemigos
+      crearMensaje('¡GANA JUGADOR!')     
    }else if(ataqueJugador=='TIERRA' && ataqueEnemigo=='FUEGO'){
-      resultado='¡GANA ENEMIGO!'
-      vidasJugador=vidasJugador-1
-      spanVidasJugador.innerHTML = vidasJugador
+      crearMensaje('¡GANA ENEMIGO!')
    }
-
-
-   parrafo.innerHTML='Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo ataco con ' + ataqueEnemigo + ' ' + resultado + ' 🥳'
-   if (vidasJugador <= 0){
-      parrafo.innerHTML= 'El Jugador no tiene mas vidas'
-   } else if (vidasEnemigos <= 0){
-      parrafo.innerHTML= 'El Enemigo no tiene mas vidas'
-   }
-   sectionMensajes.appendChild(parrafo)
 
 }
 
+function revisarVidas(){
+   if(vidasEnemigo==0){
+      crearMensajeFinal("FELICITACIONES! Ganaste :)")
+   }else if(vidasJugador==0){
+      crearMensajeFinal('Lo siento, perdiste :(')
+   }
+
+}
+
+ function crearMensaje (resultado){
+   let sectionMensajes = document.getElementById('mensajes')
+   let parrafo = document.createElement('p')
+   parrafo.innerHTML='Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo ataco con ' + ataqueEnemigo + ' ' + resultado + ' 🥳'
+   sectionMensajes.appendChild(parrafo)
+   if(resultado == '¡Empate!'){
+      vidasJugador=vidasJugador-0
+      vidasEnemigos=vidasEnemigos-0
+      revisarVidas()
+   } else if (resultado == '¡GANA JUGADOR!'){
+      vidasEnemigos=vidasEnemigos-1
+      spanVidasEnemigo.innerHTML = vidasEnemigos
+      revisarVidas() 
+   } else {
+      vidasJugador=vidasJugador-1
+      spanVidasJugador.innerHTML = vidasJugador
+   }
+ }
+
+ function crearMensajeFinal(resultadoFinal){
+   let sectionMensajes=document.getElementById('mensajes')
+   let parrafo=document.createElement('p')
+   parrafo.innerHTML=resultadoFinal
+   sectionMensajes.appendChild(parrafo)
+}
 
 // Genera un numero aleatorio en un rango
 function aleatorio(min,max){
