@@ -14,6 +14,8 @@ function iniciarJuego(){
    botonAgua.addEventListener('click',ataqueAgua)
    let botonTierra = document.getElementById('botom-tierra')
    botonTierra.addEventListener('click',ataqueTierra)
+   let botonReiniciar = document.getElementById('botom-reiniciar')
+   botonReiniciar.addEventListener('click',reiniciarJuego)
 }
 
 // Acciones del juegador
@@ -31,6 +33,9 @@ function seleccionarMascotaJugador(){
    }else {
       alert('Seleeciona una mascota')
    }
+   let botonMascotaJugador = document.getElementById('boton-mascota')
+   botonMascotaJugador.disabled=true
+
 
    seleccionarMascotaEnemigo()
 }
@@ -103,10 +108,7 @@ function combate (){
 }
 
 function revisarVidas(){
-   if (vidasEnemigo<0 || vidasJugador<0) {
-       //reiniciar
-   }
-
+   
    if(vidasEnemigo==0){
       crearMensajeFinal("FELICITACIONES! Ganaste :)")
    }else if(vidasJugador==0){
@@ -143,6 +145,18 @@ function revisarVidas(){
    let parrafo=document.createElement('p')
    parrafo.innerHTML=resultadoFinal
    sectionMensajes.appendChild(parrafo)
+
+   let botonFuego = document.getElementById('botom-fuego')   
+   let botonAgua = document.getElementById('botom-agua')
+   let botonTierra = document.getElementById('botom-tierra')   
+   botonFuego.disabled = true
+   botonAgua.disabled = true
+   botonTierra.disabled = true
+
+}
+
+function reiniciarJuego(){
+   location.reload()
 }
 
 // Genera un numero aleatorio en un rango
