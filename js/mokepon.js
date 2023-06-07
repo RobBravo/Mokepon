@@ -1,7 +1,7 @@
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
-let vidasEnemigos = 3
+let vidasEnemigo = 3
 
 // Inicializacion de parametros de juego
 function iniciarJuego(){
@@ -80,11 +80,10 @@ function ataqueAleatorioEnemigo(){
 // Combate
 
 function combate (){
-   let spanVidasJugador = document.getElementById('vida-jugador')
-   let spanVidasEnemigo = document.getElementById('vida-enemigo') 
+   
 
    if (ataqueJugador==ataqueEnemigo){
-      resultado= '¡Empate!'
+      crearMensaje('¡Empate!')
    }else if(ataqueJugador=='FUEGO' && ataqueEnemigo=='AGUA'){
       crearMensaje('¡GANA ENEMIGO!')
    }else if(ataqueJugador=='AGUA' && ataqueEnemigo=='FUEGO'){
@@ -113,21 +112,25 @@ function revisarVidas(){
 }
 
  function crearMensaje (resultado){
+   let spanVidasJugador = document.getElementById('vida-jugador')
+   let spanVidasEnemigo = document.getElementById('vida-enemigo') 
    let sectionMensajes = document.getElementById('mensajes')
    let parrafo = document.createElement('p')
    parrafo.innerHTML='Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo ataco con ' + ataqueEnemigo + ' ' + resultado + ' 🥳'
    sectionMensajes.appendChild(parrafo)
    if(resultado == '¡Empate!'){
-      vidasJugador=vidasJugador-0
       vidasEnemigos=vidasEnemigos-0
+      vidasJugador=vidasJugador-0
       revisarVidas()
    } else if (resultado == '¡GANA JUGADOR!'){
+      
       vidasEnemigos=vidasEnemigos-1
       spanVidasEnemigo.innerHTML = vidasEnemigos
       revisarVidas() 
    } else {
       vidasJugador=vidasJugador-1
       spanVidasJugador.innerHTML = vidasJugador
+      revisarVidas()
    }
  }
 
