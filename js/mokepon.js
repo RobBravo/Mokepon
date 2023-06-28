@@ -6,6 +6,8 @@ let vidasEnemigo = 3
 // Inicializacion de parametros de juego
 function iniciarJuego(){
    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+   let sectionSeleccionarMascota = document.getElementById('selecionar-mascota')
+   sectionSeleccionarMascota.style.display ='block'
    sectionSeleccionarAtaque.style.display = 'none'
    let sectionReiniciar = document.getElementById('Reiniciar')
    sectionReiniciar.style.display = 'none'
@@ -41,6 +43,8 @@ function seleccionarMascotaJugador(){
    botonMascotaJugador.disabled=true
    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
    sectionSeleccionarAtaque.style.display = 'block'
+   let sectionSeleccionarMascota = document.getElementById('selecionar-mascota')
+   sectionSeleccionarMascota.style.display ='none'
 
    seleccionarMascotaEnemigo()
 }
